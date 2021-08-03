@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yele.architecture">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <application>
+        <receiver
+            android:name=".broadcast.NetworkStateReceive"
+            android:enabled="true"
+            android:exported="true"></receiver>
+    </application>
+
+</manifest>

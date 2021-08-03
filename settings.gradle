@@ -1,0 +1,3 @@
+rootProject.name = "JetPackBestPractice"
+include ':app'
+include ':architecture'
