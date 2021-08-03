@@ -1,26 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="state"
+            type="com.yele.jetpackbestpractice.ui.state.MainActivityViewModel" />
+
+        <variable
+            name="listener"
+            type="com.yele.jetpackbestpractice.MainActivity.ListenerHandler" />
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/dl"
+        allowDrawerOpen="@{state.allowDrawerOpen}"
+        bindDrawerListener="@{listener}"
+        isOpenDrawer="@{state.openDrawer}"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <com.sothree.slidinguppanel.SlidingUpPanelLayout
+            android:id="@+id/sliding_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            app:umanoDragView="@+id/slide_fragment_host"
+            sothree:umanoOverlay="false"
+            sothree:umanoPanelHeight="55dp"
+            sothree:umanoShadowHeight="5dp">
+
+            <fragment
+                android:id="@+id/main_fragment_host"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:fitSystemWindows="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/"
+        </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
