@@ -30,7 +30,7 @@ public abstract class UseCase<Q extends UseCase.RequestValues, P extends UseCase
         executeUseCase(mRequestValues);
     }
 
-    protected abstract void executeUseCase(RequestValues requestValues);
+    protected abstract void executeUseCase(Q requestValues);
 
     public interface RequestValues {
     }

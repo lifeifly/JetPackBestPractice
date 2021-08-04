@@ -37,12 +37,28 @@
             <fragment
                 android:id="@+id/main_fragment_host"
                 android:name="androidx.navigation.fragment.NavHostFragment"
-                android:fitSystemWindows="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fitSystemWindows="true"
                 app:defaultNavHost="true"
-                app:navGraph="@navigation/"
+                app:navGraph="@navigation/main_nav" />
+
+            <fragment
+                android:id="@+id/slide_fragment_host"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitSystemWindows="true"
+                app:navGraph="@navigation/slide_nav" />
         </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
+        <fragment
+            android:id="@+id/drawer_fragment_host"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="330dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:navGraph="@navigation/drawer_nav" />
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
