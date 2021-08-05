@@ -1,14 +1,30 @@
 package com.yele.jetpackbestpractice.ui.page;
 
 import androidx.fragment.app.Fragment;
+<<<<<<<HEAD
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.yele.architecture.model.DataBindingConfig;
+import com.yele.architecture.ui.page.BaseFragment;
 import com.yele.jetpackbestpractice.R;
 import com.yele.jetpackbestpractice.ui.event.ShareViewModel;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends BaseFragment {
+    private MainFragmentViewModel mState;
     private ShareViewModel mEvent;
+
+
+    @Override
+    protected void initViewModel() {
+        mState = getFragmentScopeViewModel(MainFragmentViewModel.class);
+        mEvent = getApplicationScopeViewModel(ShareViewModel.class);
+    }
+
+    @Override
+    protected DataBindingConfig getDataBindingConfig() {
+        return new DataBindingConfig(R.layout.fragment_main, BR.);
+    }
 
     protected NavController nav() {
         return NavHostFragment.findNavController(this);
