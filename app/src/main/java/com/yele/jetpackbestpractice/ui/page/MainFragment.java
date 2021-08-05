@@ -7,13 +7,17 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.yele.architecture.model.DataBindingConfig;
 import com.yele.architecture.ui.page.BaseFragment;
+import com.yele.jetpackbestpractice.BR;
 import com.yele.jetpackbestpractice.R;
 import com.yele.jetpackbestpractice.ui.event.ShareViewModel;
+import com.yele.jetpackbestpractice.ui.state.MainFragmentViewModel;
 
 public class MainFragment extends BaseFragment {
+    //TODO tip 1：每个页面都要单独配备一个 state-ViewModel，职责仅限于 "状态托管和恢复"，
+    //event-ViewModel 则是用于在 "跨页面通信" 的场景下，承担 "唯一可信源"，
     private MainFragmentViewModel mState;
     private ShareViewModel mEvent;
-
+    private PlayListAdapter mAdapter;
 
     @Override
     protected void initViewModel() {
@@ -23,7 +27,9 @@ public class MainFragment extends BaseFragment {
 
     @Override
     protected DataBindingConfig getDataBindingConfig() {
-        return new DataBindingConfig(R.layout.fragment_main, BR.);
+
+        return new DataBindingConfig(R.layout.fragment_main, BR.vm,mState).addBindingParams(BR.click,new ClickProxy())
+                .addBindingParams(BR.adapter,);
     }
 
     protected NavController nav() {

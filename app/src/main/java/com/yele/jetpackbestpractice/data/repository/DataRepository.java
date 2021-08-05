@@ -23,8 +23,11 @@ import com.google.gson.reflect.TypeToken;
 
 import com.yele.architecture.model.DataResult;
 import com.yele.architecture.model.ResponseStatus;
+import com.yele.architecture.utils.Utils;
+import com.yele.jetpackbestpractice.R;
 import com.yele.jetpackbestpractice.data.api.APIs;
 import com.yele.jetpackbestpractice.data.bean.DownloadFile;
+import com.yele.jetpackbestpractice.data.bean.TestAlbum;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -74,26 +77,26 @@ public class DataRepository {
                 .build();
     }
 
-//    /**
-//     * TODO: 建议在 DataRepository 使用 DataResult 而非 LiveData 来返回结果：
-//     * liveData 是专用于页面开发的、用于解决生命周期安全问题的组件，
-//     * 有时候数据并非一定是通过 liveData 来分发给页面，也可能是通过别的组件去通知给非页面的东西，
-//     * 这时候 repo 方法中内定通过 liveData 分发就不太合适，不如一开始就规定不在数据层通过 liveData 返回结果。
-//     * <p>
-//     * 如果这样说还不理解的话，详见《如何让同事爱上架构模式、少写 bug 多注释》篇的解析
-//     * https://xiaozhuanlan.com/topic/8204519736
-//     *
-//     * @param result
-//     */
-//    public void getFreeMusic(DataResult.Result<TestAlbum> result) {
-//
-//        Gson gson = new Gson();
-//        Type type = new TypeToken<TestAlbum>() {
-//        }.getType();
-//        TestAlbum testAlbum = gson.fromJson(Utils.getApp().getString(R.string.free_music_json), type);
-//
-//        result.onResult(new DataResult<>(testAlbum, new ResponseStatus()));
-//    }
+    /**
+     * TODO: 建议在 DataRepository 使用 DataResult 而非 LiveData 来返回结果：
+     * liveData 是专用于页面开发的、用于解决生命周期安全问题的组件，
+     * 有时候数据并非一定是通过 liveData 来分发给页面，也可能是通过别的组件去通知给非页面的东西，
+     * 这时候 repo 方法中内定通过 liveData 分发就不太合适，不如一开始就规定不在数据层通过 liveData 返回结果。
+     * <p>
+     * 如果这样说还不理解的话，详见《如何让同事爱上架构模式、少写 bug 多注释》篇的解析
+     * https://xiaozhuanlan.com/topic/8204519736
+     *
+     * @param result
+     */
+    public void getFreeMusic(DataResult.Result<TestAlbum> result) {
+
+        Gson gson = new Gson();
+        Type type = new TypeToken<TestAlbum>() {
+        }.getType();
+        TestAlbum testAlbum = gson.fromJson(Utils.getApp().getString(R.string.free_music_json), type);
+
+        result.onResult(new DataResult<>(testAlbum, new ResponseStatus()));
+    }
 //
 //    public void getLibraryInfo(DataResult.Result<List<LibraryInfo>> result) {
 //        Gson gson = new Gson();
